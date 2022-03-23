@@ -1,6 +1,6 @@
 
 
-let list=["luke"];
+let list=[];
 let counter = 0;
 
 const pages = [
@@ -79,14 +79,15 @@ function view(){
     viewButton.addEventListener("click",function() {
 
         let stringNote = viewNoteEle.toString();
+        let stringLength = stringNote.length;
 
         viewMessage.innerHTML = ""
 
-        console.log("Note length:"+stringNote.length);
+        console.log("Note length:"+stringLength);
         console.log("Importance value:"+viewImportanceEle.value);
 
 
-        if (stringNote.length < 2) {
+        if (stringLength.length < 2) {
             viewMessage.innerHTML = "The Note length is too short."
         }
         else {
@@ -98,7 +99,11 @@ function view(){
             //     viewMessage.innerHTML = "Please enter an Importance numerical value."
             // }
             else {
-                viewMessage.innerHTML = "Note has been saved."
+                viewMessage.innerHTML = "Note has been saved successfully.";
+
+                list.push(viewNoteEle.value+viewImportanceEle.value);
+                renderList();
+
             }
         }
     })
@@ -146,8 +151,6 @@ button.addEventListener("click",function(){
         }
     }
 
-    // list.push(inputEle.value);
-    // renderList();
 })
 
 //list element
